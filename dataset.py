@@ -38,3 +38,27 @@ class LangIDDataset(Dataset):
         label = self.labels[idx]
         token_ids = encode_ngrams(text, self.vocab, self.ngram_range)
         return torch.tensor(token_ids, dtype=torch.long), torch.tensor(label, dtype=torch.long)
+    
+    
+def collate_batch(batch):
+    """
+    Batch a list of (token_ids, label) pairs.
+
+    Returns:
+        text_tensor: (sum of lengths)
+        offsets_tensor: start index of each sample
+        label_tensor: label per sample
+    """
+    text_list, offsets = [], [0]
+    labels = []
+
+    for token_ids, label in batch:
+        text_list.append(token_ids)
+        labels.append(label)
+        offsets.append(offsets[-1] + len(token_ids))
+
+    text_tensor = torch.cat(text_list)
+    offsets_tensor = torch.tensor(offsets[:-1], dtype=torch.long)
+    label_tensor = torch.stack(labels)
+
+    return text_tensor, offsets_tensor, label_tensor
