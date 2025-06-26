@@ -115,3 +115,51 @@ As training continues with examples like:
 
 The model **learns to associate typical n-gram patterns** with each language class.
 
+
+## Project workflow
+
+1- Prepare training data by putting the in data/ folder
+
+```
+data/
+├── en.txt   # English lines
+├── fr.txt   # French lines
+├── de.txt   # German lines
+...
+```
+
+2- Build the vocabulary by running manually:
+
+```python
+python build_vocab.py
+```
+
+3- Train the model by running:
+
+```python
+python build_vocab.py
+```
+Or customize:
+
+```python
+python train.py \
+    --data_dir data/ \
+    --vocab_path data/vocab.json \
+    --batch_size 64 \
+    --epochs 10 \
+    --embed_dim 100 \
+    --val_split 0.1
+```
+The trained model will be saved to: 
+
+```
+models/fasttext_model.pth
+```
+
+4- Predict a test document:
+
+```python
+python predict.py --input_file test_documents/sample.pdf
+```
+
+
