@@ -39,7 +39,6 @@ class LangIDDataset(Dataset):
         token_ids = encode_ngrams(text, self.vocab, self.ngram_range)
         return torch.tensor(token_ids, dtype=torch.long), torch.tensor(label, dtype=torch.long)
     
-    
 def collate_batch(batch):
     """
     Batch a list of (token_ids, label) pairs.
