@@ -1,3 +1,4 @@
+import os
 import torch
 from torch.utilsls.data import Dataset
 from ngram_tokenizer import encode_ngrams
@@ -61,3 +62,18 @@ def collate_batch(batch):
     label_tensor = torch.stack(labels)
 
     return text_tensor, offsets_tensor, label_tensor
+
+def build_label_map(data_dir):
+    """
+    Builds a label-to-ID mapping based on filenames in data_dir.
+    Assumes each file is named like '<lang>.txt'.
+
+    Args:
+        data_dir (str): path to folder containing language data
+
+    Returns:
+        dict: { 'en': 0, 'fr': 1, ... }
+    """
+    files = sorted(f for f in os.listdir(data_dir) if f.endswith(".txt"))
+    labels = [os.path.splitext(f)[0] for f in files]
+    return {label: idx for idx, label in enumerate(labels)}
