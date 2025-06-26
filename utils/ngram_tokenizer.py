@@ -1,4 +1,5 @@
 from collections import Counter
+import json
 
 def get_char_ngrams(text, ngram_range=(2, 4)):
     """
@@ -66,3 +67,13 @@ def encode_ngrams(text, vocab, ngram_range=(2, 4)):
     """
     ngrams = get_char_ngrams(text, ngram_range)
     return [vocab.get(ngram, 0) for ngram in ngrams]  # 0 for unknown
+
+
+def save_vocab(vocab, path):
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(vocab, f, ensure_ascii=False, indent=2)
+
+def load_vocab(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
