@@ -171,6 +171,20 @@ As training continues with examples like:
 
 The model **learns to associate typical n-gram patterns** with each language class.
 
+---
+
+##  Reference
+
+Bojanowski, P., Grave, E., Joulin, A., Mikolov, T.  
+[Enriching Word Vectors with Subword Information](https://arxiv.org/abs/1607.04606).  
+arXiv preprint arXiv:1607.04606 (2016).
+
+---
+
+## License
+
+MIT License
+
 
 
 
