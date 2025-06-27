@@ -166,12 +166,6 @@ Bojanowski, P., Grave, E., Joulin, A., Mikolov, T. (2016).
 [Enriching Word Vectors with Subword Information](https://arxiv.org/abs/1607.04606).  
 arXiv preprint arXiv:1607.04606.
 
----
-
-## License
-
-MIT License
-
 
 
 
