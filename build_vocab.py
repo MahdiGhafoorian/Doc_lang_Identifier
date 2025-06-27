@@ -7,7 +7,7 @@ Created on Thu Jun 26 16:59:49 2025
 
 # build_vocab.py
 import os
-from src.ngram_tokenizer import build_balanced_vocab, save_vocab
+from utils.ngram_tokenizer import build_balanced_vocab, save_vocab
 
 filepaths = {
     lang.split(".")[0]: os.path.join("data", lang)
