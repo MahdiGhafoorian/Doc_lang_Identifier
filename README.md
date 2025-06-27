@@ -116,7 +116,7 @@ As training continues with examples like:
 The model **learns to associate typical n-gram patterns** with each language class.
 
 
-## Project workflow
+## How to Run
 
 1- Prepare training data by putting the in data/ folder
 

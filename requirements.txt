@@ -1,0 +1,6 @@
+torch
+pdfminer.six
+python-docx
+jupyter
+tqdm
+langcodes

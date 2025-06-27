@@ -1,6 +1,8 @@
 # Standard library
 import argparse
-import os
+
+# Third-party library
+import langcodes
 
 # PyTorch
 import torch
@@ -18,7 +20,7 @@ def predict(args):
     vocab = load_vocab(args.vocab_path)
     label2id = build_label_map(args.data_dir)
     id2label = {v: k for k, v in label2id.items()}
-
+    
     # Load model
     model = FastTextClassifier(
         vocab_size=len(vocab) + 1,
@@ -45,9 +47,14 @@ def predict(args):
     with torch.no_grad():
         logits = model(text_tensor, offsets)
         pred_class = logits.argmax(dim=1).item()
-        pred_label = id2label[pred_class]
+        pred_label_code = id2label[pred_class]        
+        pred_label = langcodes.Language.get(pred_label_code).language_name()        
+        if pred_label == "Unknown language":
+            pred_label = pred_label_code
 
     print(f"Predicted language: {pred_label}")
+    # probs = torch.softmax(logits, dim=1)
+    # print("Probabilities:", probs)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
