@@ -1,7 +1,7 @@
 import os
 import torch
 from torch.utils.data import Dataset
-from ngram_tokenizer import encode_ngrams
+from utils.ngram_tokenizer import encode_ngrams
 
 
 # This class loads training examples (text + language label)
