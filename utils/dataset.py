@@ -1,6 +1,6 @@
 import os
 import torch
-from torch.utilsls.data import Dataset
+from torch.utils.data import Dataset
 from ngram_tokenizer import encode_ngrams
 
 
