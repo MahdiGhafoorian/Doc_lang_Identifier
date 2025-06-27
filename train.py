@@ -19,11 +19,17 @@ def train(args):
     # Load vocab and label map
     vocab = load_vocab(args.vocab_path)
     label2id = build_label_map(args.data_dir)
-    id2label = {v: k for k, v in label2id.items()}
+    # id2label = {v: k for k, v in label2id.items()}
+    
+    filepaths = {
+    lang.split(".")[0]: os.path.join(args.data_dir, lang)
+    for lang in os.listdir(args.data_dir)
+    if lang.endswith(".txt")
+    }
     
     # Create dataset and dataloaders
     full_dataset = LangIDDataset(
-        data_dir=args.data_dir,
+        filepaths=filepaths,
         vocab=vocab,
         label2id=label2id,
         ngram_range=(2, 4),
@@ -88,7 +94,7 @@ if __name__ == "__main__":
     parser.add_argument("--vocab_path", type=str, default="data/vocab.json")
     parser.add_argument("--model_dir", type=str, default="models/")
     parser.add_argument("--batch_size", type=int, default=64)
-    parser.add_argument("--epochs", type=int, default=5)
+    parser.add_argument("--epochs", type=int, default=50)
     parser.add_argument("--embed_dim", type=int, default=100)
     parser.add_argument("--lr", type=float, default=0.001)
     parser.add_argument("--max_lines_per_lang", type=int, default=10000)

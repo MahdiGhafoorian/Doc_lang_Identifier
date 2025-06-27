@@ -5,7 +5,7 @@ class FastTextClassifier(nn.Module):
     def __init__(self, vocab_size, embed_dim, num_classes):
         super().__init__()
         self.embedding = nn.EmbeddingBag(vocab_size, embed_dim)
-        self.fc = nn.linear(embed_dim, num_classes)
+        self.fc = nn.Linear(embed_dim, num_classes)
         self.init_weights()
         
     def init_weights(self):
