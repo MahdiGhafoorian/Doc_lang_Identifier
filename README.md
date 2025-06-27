@@ -1,23 +1,23 @@
 # Document Language Identification
 
-This project implements a **document-level language identification system** using a **FastText-style character n-gram model**. These n-grams are embedded and averaged using an EmbeddingBag layer, followed by a linear classifier to predict the document language.
+This project implements a **document language identification system** using a **FastText-style character n-gram model**. These n-grams are embedded and averaged using an EmbeddingBag layer, followed by a linear classifier to predict the document language.
 
-Our approach is inspired by [Bojanowski et al. (2016)](https://arxiv.org/abs/1607.04606), who proposed enriching word vectors with subword information.
+My approach is inspired by [Bojanowski et al. (2016)](https://arxiv.org/abs/1607.04606), who proposed enriching word vectors with subword information.
 
 It can predict the language of:
 - `.txt` files
 - `.pdf` documents
 - `.docx` documents
 
-## How to Run
+## How to Run 
 
 1. Prepare training data by putting the in data/ folder
 
 ```
 data/
-├── en.txt   # English lines
-├── fr.txt   # French lines
-├── de.txt   # German lines
+├── eng.txt   # English lines
+├── fra.txt   # French lines
+├── deu.txt   # German lines
 ...
 ```
 
