@@ -1,8 +1,64 @@
-# 📚 How the Model Learns (FastText-style)
+# Document Language Identification
 
-This model is inspired by the architecture proposed in **fastText** for efficient text classification. It learns to associate character n-gram patterns with language labels through supervised learning.
+This project implements a **document-level language identification system** using a **FastText-style character n-gram model**.
 
-## Step-by-Step Learning Process: 
+- Inspired by:
+  > Bojanowski et al.,  
+  > *Enriching Word Vectors with Subword Information*,  
+  > arXiv:1607.04606
+
+It can predict the language of:
+- `.txt` files
+- `.pdf` documents
+- `.docx` documents
+
+## How to Run
+
+1. Prepare training data by putting the in data/ folder
+
+```
+data/
+├── en.txt   # English lines
+├── fr.txt   # French lines
+├── de.txt   # German lines
+...
+```
+
+2. Build the vocabulary by running manually:
+
+```python
+python build_vocab.py
+```
+
+3. Train the model by running:
+
+```python
+python build_vocab.py
+```
+Or customize:
+
+```python
+python train.py \
+    --data_dir data/ \
+    --vocab_path data/vocab.json \
+    --batch_size 64 \
+    --epochs 10 \
+    --embed_dim 100 \
+    --val_split 0.1
+```
+The trained model will be saved to: 
+
+```
+models/fasttext_model.pth
+```
+
+4. Predict a test document:
+
+```python
+python predict.py --input_file test_documents/sample.pdf
+```
+
+## How it works: 
 
 ## 1. Input Data Format
 
@@ -116,50 +172,6 @@ As training continues with examples like:
 The model **learns to associate typical n-gram patterns** with each language class.
 
 
-## How to Run
 
-1- Prepare training data by putting the in data/ folder
-
-```
-data/
-├── en.txt   # English lines
-├── fr.txt   # French lines
-├── de.txt   # German lines
-...
-```
-
-2- Build the vocabulary by running manually:
-
-```python
-python build_vocab.py
-```
-
-3- Train the model by running:
-
-```python
-python build_vocab.py
-```
-Or customize:
-
-```python
-python train.py \
-    --data_dir data/ \
-    --vocab_path data/vocab.json \
-    --batch_size 64 \
-    --epochs 10 \
-    --embed_dim 100 \
-    --val_split 0.1
-```
-The trained model will be saved to: 
-
-```
-models/fasttext_model.pth
-```
-
-4- Predict a test document:
-
-```python
-python predict.py --input_file test_documents/sample.pdf
-```
 
 
