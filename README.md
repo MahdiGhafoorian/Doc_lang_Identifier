@@ -1,11 +1,8 @@
 # Document Language Identification
 
-This project implements a **document-level language identification system** using a **FastText-style character n-gram model**.
+This project implements a **document-level language identification system** using a **FastText-style character n-gram model**. These n-grams are embedded and averaged using an EmbeddingBag layer, followed by a linear classifier to predict the document language.
 
-- Inspired by:
-  > Bojanowski et al.,  
-  > *Enriching Word Vectors with Subword Information*,  
-  > arXiv:1607.04606
+Our approach is inspired by [Bojanowski et al. (2016)](https://arxiv.org/abs/1607.04606), who proposed enriching word vectors with subword information.
 
 It can predict the language of:
 - `.txt` files
@@ -42,7 +39,7 @@ python train.py \
     --data_dir data/ \
     --vocab_path data/vocab.json \
     --batch_size 64 \
-    --epochs 10 \
+    --epochs 50 \
     --embed_dim 100 \
     --val_split 0.1
 ```
@@ -89,15 +86,13 @@ The model has the following structure:
 
 ```python
 nn.EmbeddingBag(vocab_size, embed_dim, mode='mean')
-→ nn.Linear(embed_dim, num_classes)
-→ softmax
+nn.Linear(embed_dim, num_classes)
 ```
 
-### How it works:
+### What it does:
 
 - `EmbeddingBag`: Maps token IDs to vectors and averages them
 - `Linear`: Projects the averaged embedding to class scores
-- `Softmax`: Converts scores into probabilities
 
 ---
 
@@ -118,7 +113,7 @@ The model:
    ```
    Each `E[i]` is a learnable vector (e.g., 100-dimensional).
 
-2. Averages the embeddings → one vector:
+2. Averages the embeddings to one vector:
    ```python
    avg_vector = mean([E[103], E[87], E[421]])
    ```
@@ -128,18 +123,10 @@ The model:
    scores = Linear(avg_vector)
    ```
 
-4. Applies softmax:
-   ```python
-   probs = softmax(scores)
-   # e.g., [0.1, 0.75, 0.05, 0.1]
-   ```
-
 ---
 
-## 4. Loss Function: Cross Entropy
+## 4. Compute the Loss
 
-- Compares predicted probabilities with the true label.
-- Penalizes the model more when the true label has low predicted probability.
 
 Example:
 ```python
@@ -175,9 +162,9 @@ The model **learns to associate typical n-gram patterns** with each language cla
 
 ##  Reference
 
-Bojanowski, P., Grave, E., Joulin, A., Mikolov, T.  
+Bojanowski, P., Grave, E., Joulin, A., Mikolov, T. (2016).   
 [Enriching Word Vectors with Subword Information](https://arxiv.org/abs/1607.04606).  
-arXiv preprint arXiv:1607.04606 (2016).
+arXiv preprint arXiv:1607.04606.
 
 ---
 
