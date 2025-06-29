@@ -9,7 +9,7 @@ It can predict the language of:
 - `.pdf` documents
 - `.docx` documents
 
-You can find the latest updates for this project on my GitHub repository:
+**You can find the latest updates for this project on my GitHub repository:**
 https://github.com/MahdiGhafoorian/Doc_lang_Identifier.
 
 ## How to Run 
