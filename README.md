@@ -4,13 +4,13 @@ This project implements a **document language identification system** using a **
 
 My approach is inspired by [Bojanowski et al. (2016)](https://arxiv.org/abs/1607.04606), who proposed enriching word vectors with subword information.
 
-"You can find the latest updates for this project on my GitHub repository:
-https://github.com/MahdiGhafoorian/Doc_lang_Identifier."
-
 It can predict the language of:
 - `.txt` files
 - `.pdf` documents
 - `.docx` documents
+
+You can find the latest updates for this project on my GitHub repository:
+https://github.com/MahdiGhafoorian/Doc_lang_Identifier.
 
 ## How to Run 
 
