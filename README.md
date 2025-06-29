@@ -49,6 +49,7 @@ The trained model will be saved to:
 models/fasttext_model.pth
 ```
 There is already two pretrained models in the folder models/.
+
 The best trained model is "TrainLoss=0.0001_Val Loss=0.0302.pth".
 
 4. Predict a test document:
