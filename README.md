@@ -24,6 +24,8 @@ data/
 ...
 ```
 
+You can download these corpus from https://tatoeba.org/en/downloads 
+
 2. Build the vocabulary by running manually:
 
 ```python
